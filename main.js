@@ -32,14 +32,45 @@ homeContactBtn.addEventListener("click", () => {
   scrollIntoView("#contact");
 });
 
-// 스크롤하면 홈 이미지가 사라지게 바꾸기
+// Make home slowly fade to transparent as the window scrolls down
 const homeContainer = document.querySelector(".home__container");
-const homeheight = home.getBoundingClientRect().height;
+const homeHeight = home.getBoundingClientRect().height;
 document.addEventListener("scroll", () => {
   let scrollPosition = window.scrollY;
-  if (scrollPosition <= homeheight) {
-    homeContainer.style.opacity = 1 - scrollPosition / homeheight;
+  if (scrollPosition <= homeHeight) {
+    homeContainer.style.opacity = 1 - scrollPosition / homeHeight;
   }
+});
+
+// Show "arrow up" button when scrolling down
+
+// const arrowBtn = document.querySelector(".arrow__btn");
+// document.addEventListener("scroll", () => {
+//   let scrollPosition = window.scrollY;
+//   let innerWidth = window.innerWidth;
+//   if (scrollPosition >= navbarHeight) {
+//     arrowBtn.style.display = "flex";
+//     arrowBtn.style.left = `${innerWidth - 10}px`;
+//   } else {
+//     arrowBtn.style.display = "none";
+//   }
+// });
+
+// arrowBtn.addEventListener("click", () => {
+//   scrollTo(0, 0);
+// });
+const arrowUp = document.querySelector(".arrow-up");
+document.addEventListener("scroll", () => {
+  if (window.scrollY > homeHeight / 2) {
+    arrowUp.classList.add("visible");
+  } else {
+    arrowUp.classList.remove("visible");
+  }
+});
+
+// Handle click on the "arrow up" button
+arrowUp.addEventListener("click", () => {
+  scrollIntoView("#home");
 });
 
 function scrollIntoView(selector) {
