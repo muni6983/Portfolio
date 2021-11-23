@@ -32,6 +32,16 @@ homeContactBtn.addEventListener("click", () => {
   scrollIntoView("#contact");
 });
 
+// 스크롤하면 홈 이미지가 사라지게 바꾸기
+const homeContainer = document.querySelector(".home__container");
+const homeheight = home.getBoundingClientRect().height;
+document.addEventListener("scroll", () => {
+  let scrollPosition = window.scrollY;
+  if (scrollPosition <= homeheight) {
+    homeContainer.style.opacity = 1 - scrollPosition / homeheight;
+  }
+});
+
 function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
   scrollTo.scrollIntoView({ behavior: "smooth", block: "start" });
