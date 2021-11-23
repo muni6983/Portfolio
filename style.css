@@ -103,9 +103,8 @@ p {
   z-index: 100;
 }
 
-#navbar.navbar--dark {
+#navbar.navbar--pink {
   background-color: var(--color-pink);
-  padding: 8px;
 }
 
 .navbar__menu {
@@ -461,6 +460,9 @@ p {
 @media screen and (max-width: 768px) {
   .navbar__toggle-btn {
     display: block;
+    flex-direction: column;
+    text-align: center;
+    /* padding: 8px; */
   }
   #navbar {
     flex-direction: column;
