@@ -1,5 +1,4 @@
 "use strict";
-
 //scroll -> change navbar background color
 const navbar = document.querySelector("#navbar");
 const navbarHeight = navbar.getBoundingClientRect().height;
@@ -22,8 +21,6 @@ navbarMenu.addEventListener("click", (event) => {
     return;
   }
   scrollIntoView(link);
-  // const scrollTo = document.querySelector(link);
-  // scrollTo.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 // Handle click on "contact me" button on home
@@ -42,23 +39,6 @@ document.addEventListener("scroll", () => {
   }
 });
 
-// Show "arrow up" button when scrolling down
-
-// const arrowBtn = document.querySelector(".arrow__btn");
-// document.addEventListener("scroll", () => {
-//   let scrollPosition = window.scrollY;
-//   let innerWidth = window.innerWidth;
-//   if (scrollPosition >= navbarHeight) {
-//     arrowBtn.style.display = "flex";
-//     arrowBtn.style.left = `${innerWidth - 10}px`;
-//   } else {
-//     arrowBtn.style.display = "none";
-//   }
-// });
-
-// arrowBtn.addEventListener("click", () => {
-//   scrollTo(0, 0);
-// });
 const arrowUp = document.querySelector(".arrow-up");
 document.addEventListener("scroll", () => {
   if (window.scrollY > homeHeight / 2) {
@@ -73,7 +53,33 @@ arrowUp.addEventListener("click", () => {
   scrollIntoView("#home");
 });
 
+// project
+
+const workBtnContainer = document.querySelector(".work__categories");
+const projectContainer = document.querySelector(".work__projects");
+const projects = document.querySelectorAll(".project");
+
+workBtnContainer.addEventListener("click", (e) => {
+  const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
+  if (filter == null) {
+    return;
+  }
+  projectContainer.classList.add("anim-out");
+  setTimeout(() => {
+    projects.forEach((project) => {
+      if (filter === "*" || filter === project.dataset.type) {
+        project.classList.remove("invisible");
+      } else {
+        project.classList.add("invisible");
+      }
+    });
+    projectContainer.classList.remove("anim-out");
+  }, 300);
+});
+
+//////// Funciton
 function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
   scrollTo.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+////////
